@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  teleport:
+    container_name: teleport
+    image: public.ecr.aws/gravitational/teleport-distroless:17.5.2
+    hostname: localhost
+    restart: unless-stopped
+    ports:
+      - "3025:3025"   # Auth service
+      - "3080:3080"   # Web UI & Proxy service
+      - "3023:3023"   # SSH node-to-node
+      - "3024:3024"   # SSH client tunnel
+    volumes:
+      - ~/teleport/config:/etc/teleport
+      - ~/teleport/data:/var/lib/teleport
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+    entrypoint: ["/usr/local/bin/teleport"]
+    command: ["start", "--config=/etc/teleport/teleport.yaml"]
