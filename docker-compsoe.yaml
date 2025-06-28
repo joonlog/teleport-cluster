@@ -7,10 +7,10 @@ services:
     hostname: localhost
     restart: unless-stopped
     ports:
-      - "3025:3025"   # Auth service
-      - "3080:3080"   # Web UI & Proxy service
-      - "3023:3023"   # SSH node-to-node
+      - "443:443"   # Web UI & Proxy service
       - "3024:3024"   # SSH client tunnel
+      - "3026:3026"   # Kube agent reverse tunnel
+      - "3023:3023"
     volumes:
       - ~/teleport/config:/etc/teleport
       - ~/teleport/data:/var/lib/teleport
