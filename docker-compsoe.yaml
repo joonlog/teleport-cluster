@@ -10,7 +10,7 @@ services:
       - "443:443"   # Web UI & Proxy service
       - "3024:3024"   # SSH client tunnel
       - "3026:3026"   # Kube agent reverse tunnel
-      - "3023:3023"
+      - "3023:3023"   # Auth+Proxy 통합된 이미지이기 때문에 3023 포트 오픈 필요
     volumes:
       - ~/teleport/config:/etc/teleport
       - ~/teleport/data:/var/lib/teleport
